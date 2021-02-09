@@ -3,7 +3,7 @@ using ShhhSilence.Base.Data;
 using ShhhSilence.Base.Interfaces;
 using UnityEngine;
 
-namespace ShhhSilence.Game.Behaviours
+namespace ShhhSilence.Game.Entities
 {
     public class AudioBase : MonoBehaviour, IAudioPlayer
     {

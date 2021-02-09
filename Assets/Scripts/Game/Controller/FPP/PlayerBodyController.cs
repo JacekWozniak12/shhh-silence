@@ -39,7 +39,7 @@ namespace ShhhSilence.Game.Controller.FPP
         private void Update()
         {
             GetMovement();
-            GetJump();
+            // GetJump();
             Move();
         }
 

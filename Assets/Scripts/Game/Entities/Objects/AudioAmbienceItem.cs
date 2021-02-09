@@ -1,7 +1,7 @@
 using System.Collections;
 using ShhhSilence.Base.Managers;
-using ShhhSilence.Game.Behaviours;
 using ShhhSilence.Game.Data;
+using ShhhSilence.Game.Entities;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]

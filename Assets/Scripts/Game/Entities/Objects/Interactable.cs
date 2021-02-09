@@ -16,7 +16,7 @@ namespace ShhhSilence.Game.Entities
     {
         private LayerMask layer;
 
-        private EventOnUserInteraction interaction;
+        public EventOnUserInteraction interaction;
 
         [SerializeField]
         private AudioData audioOnUse;
