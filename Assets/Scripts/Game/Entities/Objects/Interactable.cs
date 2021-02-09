@@ -12,7 +12,6 @@ namespace ShhhSilence.Game.Entities
     /// Overrides layer to "Interactable"
     /// </summary>
     [RequireComponent(typeof(AudioBase))]
-    [RequireComponent(typeof(EventOnUserInteraction))]
     public class Interactable : MonoBehaviour
     {
         private LayerMask layer;
@@ -29,7 +28,7 @@ namespace ShhhSilence.Game.Entities
         {
             layer = LayerMask.NameToLayer(Layers.INTERACTABLE_LAYER);
             gameObject.layer = layer;
-            interaction = GetComponent<EventOnUserInteraction>();
+            interaction = GetComponent<IEventInteractable<GameObject>>();
         }
 
         /// <summary>

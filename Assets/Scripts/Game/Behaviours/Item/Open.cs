@@ -27,8 +27,8 @@ namespace ShhhSilence.Game.Behaviours
         {
             transform = GetComponent<Transform>();
             state = GetComponent<EventQueueOnUserInteraction>();
-            closeRotation = transform.rotation.y;
-            openRotation += transform.rotation.y;
+            closeRotation = transform.rotation.eulerAngles.y;
+            openRotation += transform.rotation.eulerAngles.y;
 
             state.Queue.Add(new UnityEvent<GameObject>());
             state.Queue[0].AddListener(Activate);
@@ -38,29 +38,24 @@ namespace ShhhSilence.Game.Behaviours
 
         private void Activate(GameObject agent)
         {
+            StopAllCoroutines();
             StartCoroutine(ChangeRotation(openRotation));
-            print("a");
         }
 
         private void DeActivate(GameObject agent)
         {
+            StopAllCoroutines();
             StartCoroutine(ChangeRotation(closeRotation));
-            print("b");
         }
 
         private IEnumerator ChangeRotation(float rotation)
         {
             rotation = Mathf.Deg2Rad * rotation;
 
-            while (transform.rotation.y != rotation)
+            while (transform.rotation.eulerAngles.y != rotation)
             {
-                transform.rotation = Quaternion.Euler(
-                    transform.rotation.y,
-                    Mathf.LerpAngle(
-                        transform.rotation.y,
-                        rotation,
-                        Time.deltaTime * speed),
-                    transform.rotation.z);
+                Quaternion target = Quaternion.Euler(transform.rotation.eulerAngles.x, rotation, transform.rotation.eulerAngles.y);
+                transform.rotation = Quaternion.Lerp(transform.rotation, target,  Time.deltaTime * speed);
 
                 yield return new WaitForEndOfFrame();
             }
