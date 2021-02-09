@@ -74,7 +74,7 @@ namespace ShhhSilence.Game.Controller.FPP
 
             if (Input.GetButtonDown(controlsProvider.Jump))
             {
-                jumpTime = 0.15f;
+                jumpTime = 0.12f;
             }
         }
 
