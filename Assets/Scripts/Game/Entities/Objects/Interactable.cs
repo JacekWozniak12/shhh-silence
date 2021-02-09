@@ -1,4 +1,5 @@
 using ShhhSilence.Base.Data;
+using ShhhSilence.Base.Interfaces;
 using ShhhSilence.Game.Behaviours;
 using ShhhSilence.Game.Behaviours.Events;
 using ShhhSilence.Game.Settings;
@@ -16,7 +17,7 @@ namespace ShhhSilence.Game.Entities
     {
         private LayerMask layer;
 
-        public EventOnUserInteraction interaction;
+        public IEventInteractable<GameObject> interaction;
 
         [SerializeField]
         private AudioData audioOnUse;
@@ -28,13 +29,7 @@ namespace ShhhSilence.Game.Entities
         {
             layer = LayerMask.NameToLayer(Layers.INTERACTABLE_LAYER);
             gameObject.layer = layer;
-            audioBase = GetComponent<AudioBase>();
             interaction = GetComponent<EventOnUserInteraction>();
-        }
-
-        private void Start()
-        {
-            interaction.Event.AddListener(PlaySound);
         }
 
         /// <summary>
@@ -44,7 +39,5 @@ namespace ShhhSilence.Game.Entities
         {
             interaction.Interact(gameObject);
         }
-
-        public void PlaySound(GameObject agent) => audioBase.Play(audioOnUse);
     }
 }
