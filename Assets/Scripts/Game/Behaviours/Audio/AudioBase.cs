@@ -7,7 +7,7 @@ namespace ShhhSilence.Game.Behaviours
 {
     public class AudioBase : MonoBehaviour, IAudioPlayer
     {
-        private AudioSource audioSource;
+        protected AudioSource audioSource;
 
         public void Pause() => audioSource.Pause();
         public void Play() => audioSource.Play();

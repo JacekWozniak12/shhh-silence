@@ -1,6 +1,6 @@
 using System;
 using ShhhSilence.Game.Entities;
-using ShhhSilence.Game.Static.Settings;
+using ShhhSilence.Game.Settings;
 using UnityEngine;
 
 namespace ShhhSilence.Game.Controller.FPP

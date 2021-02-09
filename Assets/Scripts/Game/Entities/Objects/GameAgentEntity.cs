@@ -1,5 +1,4 @@
-using System;
-using ShhhSilence.Base.Managers;
+using ShhhSilence.Game.Managers;
 using UnityEngine;
 
 namespace ShhhSilence.Game.Entities

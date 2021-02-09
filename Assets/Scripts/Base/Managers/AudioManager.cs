@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using ShhhSilence.Game.Data;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -6,6 +7,9 @@ namespace ShhhSilence.Base.Managers
 {
     public class AudioManager : BaseManager<AudioManager>
     {
+        public AudioAmbience CurrentAmbience;
+        public AudioAmbience DefaultAmbience;
+        
         [SerializeField]
         private List<AudioMixer> audioMixers;
 

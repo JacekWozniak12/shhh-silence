@@ -1,3 +1,4 @@
+using ShhhSilence.Game.Settings;
 using UnityEngine;
 
 namespace ShhhSilence.Game.Controller.FPP
@@ -13,6 +14,12 @@ namespace ShhhSilence.Game.Controller.FPP
         private void Awake()
         {
             SetLayer();
+            SetTag();
+        }
+
+        private void SetTag()
+        {
+            gameObject.tag = Tags.PLAYER_TAG;
         }
 
         private void SetLayer()

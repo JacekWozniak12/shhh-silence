@@ -1,7 +1,7 @@
 using ShhhSilence.Base.Data;
 using ShhhSilence.Game.Behaviours;
 using ShhhSilence.Game.Behaviours.Events;
-using ShhhSilence.Game.Static.Settings;
+using ShhhSilence.Game.Settings;
 using UnityEngine;
 
 namespace ShhhSilence.Game.Entities
