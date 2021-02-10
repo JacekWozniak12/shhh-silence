@@ -10,19 +10,16 @@ namespace ShhhSilence.Game.Behaviours
 {
     [RequireComponent(typeof(EventQueueOnUserInteraction))]
     [RequireComponent(typeof(Interactable))]
-    public class Open : MonoBehaviour
+    public class PullPush : MonoBehaviour
     {
         private EventQueueOnUserInteraction state;
 
         private new Transform transform;
 
         [SerializeField]
-        private bool swapWithBackward = false;
+        private Vector3 pullDirection;
 
-        [SerializeField]
-        private Vector3 direction = Vector3.up * 90;
-
-        private Vector3 closeRotation;
+        private Vector3 pushPosition;
 
         [SerializeField]
         private float timeToFull = 1;
@@ -30,23 +27,17 @@ namespace ShhhSilence.Game.Behaviours
         private void Start()
         {
             GetComponents();
-            RegisterRotations();
-            CreateOpenClose();
+            CreatePushPull();
         }
 
         private void GetComponents()
         {
             transform = GetComponent<Transform>();
+            pushPosition = transform.position;
             state = GetComponent<EventQueueOnUserInteraction>();
         }
 
-        private void RegisterRotations()
-        {
-            closeRotation = transform.rotation.eulerAngles;
-            direction += transform.rotation.eulerAngles;
-        }
-
-        private void CreateOpenClose()
+        private void CreatePushPull()
         {
             state.Queue.Add(new UnityEvent<GameObject>());
             state.Queue[0].AddListener(Activate);
@@ -55,8 +46,15 @@ namespace ShhhSilence.Game.Behaviours
             state.Queue[1].AddListener(DeActivate);
         }
 
-        private void Activate(GameObject agent) => transform.DORotate(direction, timeToFull, RotateMode.FastBeyond360);
-        private void DeActivate(GameObject agent) => transform.DORotate(closeRotation, timeToFull, RotateMode.FastBeyond360);
+        private void Activate(GameObject agent)
+        {
+            Vector3 position = transform.position + transform.TransformDirection(pullDirection);
+            transform.DOMove(position, timeToFull);
+        }
+
+        private void DeActivate(GameObject agent)
+        {
+            transform.DOMove(pushPosition, timeToFull);
+        }
     }
 }
-
