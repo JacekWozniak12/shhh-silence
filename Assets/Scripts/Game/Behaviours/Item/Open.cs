@@ -25,6 +25,9 @@ namespace ShhhSilence.Game.Behaviours
         private Vector3 closeRotation;
 
         [SerializeField]
+        private RotateMode rotateMode = RotateMode.Fast;
+
+        [SerializeField]
         private float timeToFull = 1;
 
         private void Start()
@@ -55,8 +58,15 @@ namespace ShhhSilence.Game.Behaviours
             state.Queue[1].AddListener(DeActivate);
         }
 
-        private void Activate(GameObject agent) => transform.DORotate(direction, timeToFull, RotateMode.FastBeyond360);
-        private void DeActivate(GameObject agent) => transform.DORotate(closeRotation, timeToFull, RotateMode.FastBeyond360);
+        private void Activate(GameObject agent)
+        {
+            transform.DORotate(direction, timeToFull, rotateMode);
+        }
+
+        private void DeActivate(GameObject agent)
+        {
+            transform.DORotate(closeRotation, timeToFull, rotateMode);
+        }
     }
 }
 

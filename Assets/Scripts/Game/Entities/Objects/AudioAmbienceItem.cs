@@ -7,23 +7,21 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 class AudioAmbienceItem : AudioBase
 {
-
-    [SerializeField] AudioAmbience audioAmbience;
+    public AudioAmbience Ambience;
 
     private bool setted = true;
 
     private float SettedVolume;
 
-    private void Awake()
+    private void Start()
     {
         if (audioSource == null) audioSource = GetComponent<AudioSource>();
-        if (audioAmbience == null) audioAmbience = AudioManager.Instance.DefaultAmbience;
+        if (Ambience == null) Ambience = AudioManager.Instance.DefaultAmbience;
         SettedVolume = audioSource.volume;
     }
-
     private void FixedUpdate()
     {
-        if (audioAmbience != AudioManager.Instance.CurrentAmbience)
+        if (Ambience != AudioManager.Instance.CurrentAmbience)
         {
             if (setted)
             {
@@ -54,5 +52,4 @@ class AudioAmbienceItem : AudioBase
         }
         yield return new WaitForEndOfFrame();
     }
-
 }

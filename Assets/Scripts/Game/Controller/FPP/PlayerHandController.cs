@@ -39,8 +39,7 @@ namespace ShhhSilence.Game.Controller.FPP
                 view.position,
                 view.forward,
                 out RaycastHit hit,
-                1f,
-                ~(interactableLayer)))
+                2f))
             {
                 transform.position = hit.point;
             }

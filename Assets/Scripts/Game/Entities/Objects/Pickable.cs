@@ -81,6 +81,7 @@ namespace ShhhSilence.Game.Entities
             transform.parent = grabAgent;
             grabbed = true;
             rigidbody.useGravity = false;
+            rigidbody.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
         }
 
         public void LetGo(Vector3 force)
@@ -89,6 +90,7 @@ namespace ShhhSilence.Game.Entities
             transform.parent = defaultParent;
             grabbed = false;
             rigidbody.useGravity = true;
+            rigidbody.collisionDetectionMode = CollisionDetectionMode.Discrete;
             rigidbody.AddForce(force, ForceMode.Force);
         }
     }

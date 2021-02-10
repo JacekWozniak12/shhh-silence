@@ -25,7 +25,7 @@ namespace ShhhSilence.Game.Entities
             audioSource = audioSource ?? GetComponent<AudioSource>() ?? gameObject.AddComponent<AudioSource>();
         }
 
-        protected virtual void CustomStart() {}
+        protected virtual void CustomStart() { }
 
         /// <summary>
         /// Sets and plays audio data one time.
