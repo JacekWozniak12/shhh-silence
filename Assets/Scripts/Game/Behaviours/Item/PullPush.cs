@@ -52,6 +52,10 @@ namespace ShhhSilence.Game.Behaviours
             transform.DOMove(position, timeToFull);
         }
 
+        private void OnCollisionEnter(Collision other) {
+            transform.DOKill();
+        }
+
         private void DeActivate(GameObject agent)
         {
             transform.DOMove(pushPosition, timeToFull);

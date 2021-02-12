@@ -18,12 +18,6 @@ namespace ShhhSilence.Game.Entities
 
         public IEventInteractable<GameObject> interaction;
 
-        [SerializeField]
-        private AudioData audioOnUse;
-
-        [SerializeField]
-        private AudioBase audioBase;
-
         private void Awake()
         {
             layer = LayerMask.NameToLayer(Layers.INTERACTABLE_LAYER);

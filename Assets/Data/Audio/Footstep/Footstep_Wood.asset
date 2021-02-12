@@ -12,10 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 008f2d2ead6039643a3386af6f0e4cb2, type: 3}
   m_Name: Footstep_Wood
   m_EditorClassIdentifier: 
-  clips: []
+  clips:
+  - {fileID: 8300000, guid: 031a529b167a621408eecd0f7d2c50ec, type: 3}
+  - {fileID: 8300000, guid: ccd81c8e0a27d3d49b584d18e16fea38, type: 3}
+  - {fileID: 8300000, guid: eb3d439993fdc044592b195c15091a9f, type: 3}
+  - {fileID: 8300000, guid: e5001a9407bd11c4b86122b9fd67ea6e, type: 3}
+  - {fileID: 8300000, guid: b9984b53756839c48b35aa5764d83ac6, type: 3}
+  - {fileID: 8300000, guid: 72f7617a34d909049b84797069a06ff0, type: 3}
   volume:
-    min: 0
-    max: 0
+    min: 1
+    max: 1
   pitch:
-    min: 0
-    max: 0
+    min: 0.8
+    max: 1.1

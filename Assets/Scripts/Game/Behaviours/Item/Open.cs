@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using DG.Tweening;
 using ShhhSilence.Game.Settings;
+using ShhhSilence.Base.Data;
 
 namespace ShhhSilence.Game.Behaviours
 {
@@ -12,23 +13,25 @@ namespace ShhhSilence.Game.Behaviours
     [RequireComponent(typeof(Interactable))]
     public class Open : MonoBehaviour
     {
-        private EventQueueOnUserInteraction state;
-
-        private new Transform transform;
-
-        [SerializeField]
-        private bool swapWithBackward = false;
-
         [SerializeField]
         private Vector3 direction = Vector3.up * 90;
-
-        private Vector3 closeRotation;
 
         [SerializeField]
         private RotateMode rotateMode = RotateMode.Fast;
 
         [SerializeField]
         private float timeToFull = 1;
+
+        [SerializeField]
+        private AudioData activated;
+
+        [SerializeField]
+        private AudioData deactivated;
+
+        private EventQueueOnUserInteraction state;
+        private new Transform transform;
+        private Vector3 closeRotation;
+        private AudioAmbienceItem item;
 
         private void Start()
         {
@@ -41,6 +44,7 @@ namespace ShhhSilence.Game.Behaviours
         {
             transform = GetComponent<Transform>();
             state = GetComponent<EventQueueOnUserInteraction>();
+            item = GetComponent<AudioAmbienceItem>();
         }
 
         private void RegisterRotations()
@@ -61,11 +65,13 @@ namespace ShhhSilence.Game.Behaviours
         private void Activate(GameObject agent)
         {
             transform.DORotate(direction, timeToFull, rotateMode);
+            if(activated != null) item?.Play(activated);
         }
 
         private void DeActivate(GameObject agent)
         {
             transform.DORotate(closeRotation, timeToFull, rotateMode);
+            if(deactivated != null) item?.Play(deactivated);
         }
     }
 }
