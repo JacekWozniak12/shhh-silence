@@ -13,6 +13,7 @@ namespace ShhhSilence.Game.Behaviours.Events
         /// </summary>
         public List<UnityEvent<GameObject>> Queue = new List<UnityEvent<GameObject>>();
 
+        [SerializeField]
         private int currentIndex = 0;
 
         public void Interact(GameObject agent)
