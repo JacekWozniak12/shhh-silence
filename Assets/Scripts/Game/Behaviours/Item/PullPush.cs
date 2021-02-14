@@ -18,7 +18,7 @@ namespace ShhhSilence.Game.Behaviours
         private new Transform transform;
 
         [SerializeField]
-        private Vector3 pullDirection;
+        private Vector3 pullPosition;
 
         private Vector3 pushPosition;
 
@@ -43,7 +43,9 @@ namespace ShhhSilence.Game.Behaviours
         {
             transform = GetComponent<Transform>();
             pushPosition = transform.position;
+            pullPosition = transform.position + pullPosition;
             state = GetComponent<EventQueueOnUserInteraction>();
+            item = GetComponent<AudioAmbienceItem>();
         }
 
         private void CreatePushPull()
@@ -57,8 +59,7 @@ namespace ShhhSilence.Game.Behaviours
 
         private void Activate(GameObject agent)
         {
-            Vector3 position = transform.position + transform.TransformDirection(pullDirection);
-            transform.DOMove(position, timeToFull);
+            transform.DOMove(pullPosition, timeToFull);
             if (activated != null) item?.Play(activated);
         }
 

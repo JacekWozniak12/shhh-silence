@@ -59,6 +59,7 @@ namespace ShhhSilence.Game.Controller.FPP
             if (handController?.WithinHand?.GetComponent<Interactable>() is Interactable interactable)
             {
                 interactable.Interact(this.gameObject);
+                return;
             }
 
             NothingSelected();

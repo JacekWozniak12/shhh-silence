@@ -7,16 +7,16 @@ using System.Collections;
 
 namespace ShhhSilence.Game.Behaviours
 {
-    [RequireComponent(typeof(EventQueueOnUserInteraction))]
+    [RequireComponent(typeof(EventOnUserInteraction))]
     [RequireComponent(typeof(Interactable))]
     public class TurnOnTimedOff : MonoBehaviour
     {
-        private EventQueueOnUserInteraction state;
+        private EventOnUserInteraction eventOn;
         private new Transform transform;
 
         [SerializeField]
         private GameObject[] toTurnOn;
-        
+
         [SerializeField]
         private AudioData activated;
 
@@ -36,16 +36,13 @@ namespace ShhhSilence.Game.Behaviours
 
         private void GetComponents()
         {
-            state = GetComponent<EventQueueOnUserInteraction>();
+            eventOn = GetComponent<EventOnUserInteraction>();
+            item = GetComponent<AudioAmbienceItem>();
         }
 
         private void CreateOnOff()
         {
-            state.Queue.Add(new UnityEvent<GameObject>());
-            state.Queue[0].AddListener(Activate);
-
-            state.Queue.Add(new UnityEvent<GameObject>());
-            state.Queue[1].AddListener(DeActivate);
+            eventOn.AddListener(Activate);
         }
 
         private void Activate(GameObject agent)
@@ -55,7 +52,8 @@ namespace ShhhSilence.Game.Behaviours
                 item.SetActive(true);
             }
             if (activated != null) item?.Play(activated);
-            
+            StartCoroutine(TimedOff());
+
         }
 
         private void DeActivate(GameObject agent)
@@ -65,13 +63,12 @@ namespace ShhhSilence.Game.Behaviours
                 item.SetActive(false);
             }
             if (deactivated != null) item?.Play(deactivated);
-            StopAllCoroutines();
         }
 
         private IEnumerator TimedOff()
         {
             yield return new WaitForSeconds(period);
-            state.Interact(this.gameObject);
+            DeActivate(this.gameObject);
         }
     }
 }

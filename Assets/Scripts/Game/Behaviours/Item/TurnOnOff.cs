@@ -33,6 +33,7 @@ namespace ShhhSilence.Game.Behaviours
         private void GetComponents()
         {
             state = GetComponent<EventQueueOnUserInteraction>();
+            item = GetComponent<AudioAmbienceItem>();
         }
 
         private void CreateOnOff()
