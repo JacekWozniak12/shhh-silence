@@ -1,8 +1,18 @@
 # Shhh - Silence!
+
+
 Simple gameplay, where you have to live quietly with your neighbor but items in your home will make it hard. 
 
 ## Gameplay 
 Don't be loud. Your neighbor is sleeping and you don't want to wake him up. So silence everything you need. Try to silence as many loud corruption noises as possibly, but longer you try to stay silent, the often they come.
+
+### Controls
+- `WSAD` movement
+- `Mouse` look
+- `Q` pick
+- `E` interact
+- `LMB` throw
+- `RMB` drop
 
 ## Implementation
 ### Controller
@@ -34,18 +44,18 @@ It is BoxCollider with isTrigger = true. It has script ***AudioEnviroment*** whi
 
 ![Audio Enviroment](Docs/AudioEnviroment.PNG)
 
+Bathroom and WC have both echos to simulate tiles. Rooms with multiple rugs have compressor effect within.
+
 ##### Audio Ambience Item
 Currently to register change of enviroment on item I use OnTriggerEnter / Exit / Stay on ambient zones, which is quite resource intensive, but due to time constraint and complexity of other solution I stayed by using colliders mixed with rigidbodies. So if there is no colliders / rigidbodies within gameobject with component ***AudioAmbienceItem***, then they will be created via code. 
 
-It creates AudioSource per AudioAmbienceItem with RequireComponent, so it is one AudioSource per item. I prefered having multiple AudioSource to handle multiple interactions as Opening, Picking Up, Closing or Turning On / Off.
+It can be forced to have one selected ambience, which is useful in case of objects that are within two ambient groups and are not pickable, like for example doors. Those have AudioReverb zones as well. 
+
+It creates AudioSource per AudioAmbienceItem with RequireComponent, so it is one AudioSource per item. I prefered having multiple AudioSource to handle multiple interactions as Opening, Picking Up, Closing or Turning On / Off. 
 
 #### Player
 ##### FootstepController
 Plays AudioData of default ground or sound specified in custom component when specified period of time elapsed and Player is moving and grounded. 
-
-
-### Gameplay
-WIP
 
 ## Using
 ### Utilities

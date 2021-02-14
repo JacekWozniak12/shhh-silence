@@ -10,7 +10,16 @@ namespace ShhhSilence.Game.Entities
     [RequireComponent(typeof(AudioSource))]
     public class AudioAmbienceItem : AudioBase
     {
-        public AudioAmbience Ambience { get; private set; }
+        public AudioAmbience Ambience
+        {
+            get => ambience;
+            private set => ambience = value;
+        }
+
+        [SerializeField]
+        private AudioAmbience ambience;
+
+        public bool ForceCurrentAmbience = false;
 
         protected override void CustomStart()
         {
@@ -27,11 +36,13 @@ namespace ShhhSilence.Game.Entities
                 rigidbody.isKinematic = true;
             }
 
-            Ambience = AudioManager.Instance.DefaultAmbience;
+            if(Ambience == null) Ambience = AudioManager.Instance.DefaultAmbience;
         }
 
         public void SetAudioAmbience(AudioAmbience ambience)
         {
+            if(ForceCurrentAmbience) return;
+
             try
             {
                 Ambience = ambience;
