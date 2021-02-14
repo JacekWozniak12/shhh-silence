@@ -17,8 +17,8 @@ namespace ShhhSilence.Game.Behaviours.Events
 
         public void Interact(GameObject agent)
         {
-            Queue[currentIndex++]?.Invoke(agent);
-            currentIndex = MathL.LoopPositive(currentIndex, Queue.Count - 1);
+            Queue[currentIndex]?.Invoke(agent);
+            currentIndex = MathL.LoopPositive(++currentIndex, Queue.Count - 1);
         }
 
         /// <summary>

@@ -35,7 +35,9 @@ It is BoxCollider with isTrigger = true. It has script ***AudioEnviroment*** whi
 ![Audio Enviroment](Docs/AudioEnviroment.PNG)
 
 ##### Audio Ambience Item
-Currently to register change of enviroment on item I use OnTriggerEnter / Exit / Stay on ambient zones, which is quite resource intensive, but due to time constraint and complexity of other solution I stayed by using colliders mixed with rigidbodies. So if there is no colliders / rigidbodies within gameobject with component ***AudioAmbienceItem***, then they will be created via code.
+Currently to register change of enviroment on item I use OnTriggerEnter / Exit / Stay on ambient zones, which is quite resource intensive, but due to time constraint and complexity of other solution I stayed by using colliders mixed with rigidbodies. So if there is no colliders / rigidbodies within gameobject with component ***AudioAmbienceItem***, then they will be created via code. 
+
+It creates AudioSource per AudioAmbienceItem with RequireComponent, so it is one AudioSource per item. I prefered having multiple AudioSource to handle multiple interactions as Opening, Picking Up, Closing or Turning On / Off.
 
 #### Player
 ##### FootstepController

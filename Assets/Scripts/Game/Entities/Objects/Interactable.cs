@@ -20,7 +20,7 @@ namespace ShhhSilence.Game.Entities
         private LayerMask layer;
         private bool selected = true;
 
-        public IEventInteractable<GameObject> interaction;
+        public IEventInteractable<GameObject>[] interactions;
 
         private void Awake()
         {
@@ -31,7 +31,7 @@ namespace ShhhSilence.Game.Entities
             
             layer = LayerMask.NameToLayer(Layers.INTERACTABLE_LAYER);
             gameObject.layer = layer;
-            interaction = GetComponent<IEventInteractable<GameObject>>();
+            interactions = GetComponents<IEventInteractable<GameObject>>();
             Deselect();
         }
 
@@ -40,7 +40,10 @@ namespace ShhhSilence.Game.Entities
         /// </summary>
         public void Interact(GameObject gameObject)
         {
-            interaction.Interact(gameObject);
+            foreach(IEventInteractable<GameObject> item in interactions)
+            {
+                item.Interact(gameObject);
+            }
         }
 
         public void Select()

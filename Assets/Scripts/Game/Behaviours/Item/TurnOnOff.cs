@@ -14,7 +14,7 @@ namespace ShhhSilence.Game.Behaviours
         private new Transform transform;
 
         [SerializeField]
-        private GameObject[] toTurnOn;
+        private TurnedOff[] toTurnOn;
 
         [SerializeField]
         private AudioData activated;
@@ -47,16 +47,16 @@ namespace ShhhSilence.Game.Behaviours
 
         private void Activate(GameObject agent)
         {
-            foreach (GameObject item in toTurnOn)
+            foreach (TurnedOff item in toTurnOn)
             {
-                item.SetActive(true);
+                item?.SetActive(true);
             }
             if (activated != null) item?.Play(activated);
         }
 
         private void DeActivate(GameObject agent)
         {
-            foreach (GameObject item in toTurnOn)
+            foreach (TurnedOff item in toTurnOn)
             {
                 item.SetActive(false);
             }
