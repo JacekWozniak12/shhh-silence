@@ -9,7 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 431225ff3cd5896498c5f5e3aa76a1b6, type: 3}
-  m_Name: Kitchen
+  m_Script: {fileID: 11500000, guid: 008f2d2ead6039643a3386af6f0e4cb2, type: 3}
+  m_Name: Drawer_Pull
   m_EditorClassIdentifier: 
-  Name: Kitchen
+  clips:
+  - {fileID: 8300000, guid: 300e51329810abf4ea7f8ccdbc04b43a, type: 3}
+  volume:
+    min: 1
+    max: 1
+  pitch:
+    min: 1
+    max: 1

@@ -1,6 +1,5 @@
 using ShhhSilence.Base.Managers;
 using ShhhSilence.Game.Data;
-using ShhhSilence.Game.Managers;
 using ShhhSilence.Game.Settings;
 using UnityEngine;
 
@@ -12,7 +11,7 @@ namespace ShhhSilence.Game.Entities
         private new Collider collider;
         [SerializeField] AudioAmbience Ambience;
 
-        private void OnEnable()
+        private void Start()
         {
             collider = GetComponent<Collider>();
             collider.isTrigger = true;
@@ -23,9 +22,14 @@ namespace ShhhSilence.Game.Entities
 
             foreach (Collider item in itemColliders)
             {
+                if (item.GetComponent<AudioAmbienceItem>() == null)
+                {
+                    continue;
+                }
+
                 if (item.GetComponent<AudioAmbienceItem>() is AudioAmbienceItem ambienceItem)
                 {
-                    ambienceItem.Ambience = Ambience;
+                    ambienceItem.SetAudioAmbience(Ambience);
                 }
             }
         }
@@ -39,7 +43,7 @@ namespace ShhhSilence.Game.Entities
             }
             if (other.GetComponent<AudioAmbienceItem>() is AudioAmbienceItem item)
             {
-                item.Ambience = Ambience;
+                item.SetAudioAmbience(Ambience);
             }
         }
 
@@ -51,7 +55,7 @@ namespace ShhhSilence.Game.Entities
             }
             if (other.GetComponent<AudioAmbienceItem>() is AudioAmbienceItem item && item.Ambience != Ambience)
             {
-                item.Ambience = Ambience;
+                item.SetAudioAmbience(Ambience);
             }
         }
 
@@ -64,7 +68,7 @@ namespace ShhhSilence.Game.Entities
             }
             if (other.GetComponent<AudioAmbienceItem>() is AudioAmbienceItem item)
             {
-                item.Ambience = AudioManager.Instance.DefaultAmbience;
+                item.SetAudioAmbience(AudioManager.Instance.DefaultAmbience);
             }
         }
     }

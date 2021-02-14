@@ -14,9 +14,13 @@ namespace ShhhSilence.Game.Entities
         public void Resume() => audioSource.UnPause();
         public void Stop() => audioSource.Stop();
 
-        private void Start()
+        private void Awake()
         {
             GetAudioSource();
+        }
+
+        private void Start()
+        {
             CustomStart();
         }
 

@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using DG.Tweening;
 using ShhhSilence.Game.Settings;
+using ShhhSilence.Base.Data;
 
 namespace ShhhSilence.Game.Behaviours
 {
@@ -23,6 +24,14 @@ namespace ShhhSilence.Game.Behaviours
 
         [SerializeField]
         private float timeToFull = 1;
+
+        [SerializeField]
+        private AudioData activated;
+
+        [SerializeField]
+        private AudioData deactivated;
+
+        private AudioAmbienceItem item;
 
         private void Start()
         {
@@ -50,15 +59,18 @@ namespace ShhhSilence.Game.Behaviours
         {
             Vector3 position = transform.position + transform.TransformDirection(pullDirection);
             transform.DOMove(position, timeToFull);
+            if (activated != null) item?.Play(activated);
         }
 
-        private void OnCollisionEnter(Collision other) {
+        private void OnCollisionEnter(Collision other)
+        {
             transform.DOKill();
         }
 
         private void DeActivate(GameObject agent)
         {
             transform.DOMove(pushPosition, timeToFull);
+            if (deactivated != null) item?.Play(deactivated);
         }
     }
 }

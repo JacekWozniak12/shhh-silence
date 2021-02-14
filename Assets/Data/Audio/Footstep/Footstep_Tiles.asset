@@ -13,7 +13,12 @@ MonoBehaviour:
   m_Name: Footstep_Tiles
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: e316ea6c60142dd4093ef2c220334fbd, type: 3}
+  - {fileID: 8300000, guid: d569f31dc5dc76946ab661ec86b6cf80, type: 3}
+  - {fileID: 8300000, guid: 83c88cc56c745854bafc46a2c45e0bcd, type: 3}
+  - {fileID: 8300000, guid: d21bc8e8f1322444aad52f2608e0ec89, type: 3}
+  - {fileID: 8300000, guid: a67cfefea3bc2be4c94978295e833ea3, type: 3}
+  - {fileID: 8300000, guid: 3c429a69bfa406a45b370ba56e28e487, type: 3}
+  - {fileID: 8300000, guid: d15a1a0d46741f64c91ef794227d5274, type: 3}
   volume:
     min: 1
     max: 1

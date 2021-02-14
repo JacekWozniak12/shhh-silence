@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace ShhhSilence.Game.Data
 {
@@ -6,6 +7,7 @@ namespace ShhhSilence.Game.Data
     public class AudioAmbience : ScriptableObject
     {
         public string Name = "Default";
+        public AudioMixerGroup Group;
     }
 }
 

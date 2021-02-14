@@ -1,10 +1,10 @@
+using ShhhSilence.Base.Data;
 using ShhhSilence.Game.Behaviours.Events;
 using ShhhSilence.Game.Entities;
 using UnityEngine;
 
 namespace ShhhSilence.Game.Controller.FPP
 {
-    [RequireComponent(typeof(EventOnButtonPress))]
     /// <summary>
     /// Handles using items
     /// </summary>
@@ -17,14 +17,36 @@ namespace ShhhSilence.Game.Controller.FPP
         [SerializeField]
         private PlayerHandController handController;
 
-        private void Awake()
-        {
-            GetComponent<EventOnButtonPress>();
-        }
+        [SerializeField]
+        private AudioData nothingSelected;
+
+        [SerializeField]
+        private AudioAmbienceItem item;
+
+        private Interactable lastInteractable;
+
 
         private void Update()
         {
             InteractInput();
+        }
+
+        private void FixedUpdate()
+        {
+            if (handController?.WithinHand?.GetComponent<Interactable>() is Interactable interactable)
+            {
+                if (interactable == lastInteractable) return;
+
+                lastInteractable = interactable;
+                lastInteractable.Select();
+            }
+            else
+            {
+                if (lastInteractable == null) return;
+
+                lastInteractable.Deselect();
+                lastInteractable = null;
+            }
         }
 
         private void InteractInput()
@@ -38,6 +60,13 @@ namespace ShhhSilence.Game.Controller.FPP
             {
                 interactable.Interact(this.gameObject);
             }
+
+            NothingSelected();
+        }
+
+        public void NothingSelected()
+        {
+            item.Play(nothingSelected);
         }
     }
 }
