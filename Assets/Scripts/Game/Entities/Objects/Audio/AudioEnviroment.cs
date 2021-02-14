@@ -47,18 +47,6 @@ namespace ShhhSilence.Game.Entities
             }
         }
 
-        private void OnTriggerStay(Collider other)
-        {
-            if (other.CompareTag(Tags.PLAYER_TAG) && AudioManager.Instance.CurrentAmbience != Ambience)
-            {
-                AudioManager.Instance.CurrentAmbience = Ambience;
-            }
-            if (other.GetComponent<AudioAmbienceItem>() is AudioAmbienceItem item && item.Ambience != Ambience)
-            {
-                item.SetAudioAmbience(Ambience);
-            }
-        }
-
         private void OnTriggerExit(Collider other)
         {
             if (other.CompareTag(Tags.PLAYER_TAG))

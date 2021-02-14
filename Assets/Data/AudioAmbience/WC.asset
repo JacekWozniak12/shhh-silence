@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: WC
   m_EditorClassIdentifier: 
   Name: WC
+  Group: {fileID: -5006996784999385698, guid: 88804e5d8474f4d418ab4adda619ada8, type: 2}

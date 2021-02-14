@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: LivingRoom
   m_EditorClassIdentifier: 
   Name: LivingRoom
+  Group: {fileID: -5498469662981734768, guid: 88804e5d8474f4d418ab4adda619ada8, type: 2}

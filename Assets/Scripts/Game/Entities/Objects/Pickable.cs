@@ -40,8 +40,12 @@ namespace ShhhSilence.Game.Entities
             EventOnVelocity velocityEvt = GetComponent<EventOnVelocity>();
             userEvt = GetComponent<EventOnUserInteraction>();
             audioBase = GetComponent<AudioBase>();
-            velocityEvt.Event.AddListener(HitSound);
-            userEvt.Event.AddListener(HitSound);
+            if (hit != null && hit.clips.Length > 0)
+            {
+                velocityEvt.Event.AddListener(HitSound);
+                userEvt.Event.AddListener(HitSound);
+            }
+            else Debug.LogWarning("Sound not set for: "+ this);
         }
 
         private void HitSound() => audioBase.Play(hit);

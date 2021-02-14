@@ -14,6 +14,19 @@ namespace ShhhSilence.Game.Entities
 
         protected override void CustomStart()
         {
+            if (gameObject.GetComponent<Collider>() == null)
+            {
+                BoxCollider collider = gameObject.AddComponent<BoxCollider>();
+                collider.size = Vector3.one * 0.00001f;
+            }
+
+            if (gameObject.GetComponent<Rigidbody>() == null)
+            {
+                Rigidbody rigidbody = gameObject.AddComponent<Rigidbody>();
+                rigidbody.useGravity = false;
+                rigidbody.isKinematic = true;
+            }
+
             Ambience = AudioManager.Instance.DefaultAmbience;
         }
 

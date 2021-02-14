@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Bedroom
   m_EditorClassIdentifier: 
   Name: Bedroom
+  Group: {fileID: -4732813459611043663, guid: 88804e5d8474f4d418ab4adda619ada8, type: 2}
