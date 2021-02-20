@@ -33,6 +33,8 @@ namespace ShhhSilence.Game.Managers
         private void InitializeMainMenuObject()
         {
             mainMenuObject.SetActive(active);
+            HandleCursor(active);
+            HandleSnapshot(active);
         }
 
         private void InitializePauseOnActive()
@@ -49,7 +51,14 @@ namespace ShhhSilence.Game.Managers
                 mainMenuObject.SetActive(active);
                 pause.Switch(active);
                 HandleCursor(active);
+                HandleSnapshot(active);
             }
+        }
+
+        private void HandleSnapshot(bool active)
+        {
+            if (!active) AudioManager.Instance.SetSnapshot("Game");
+            else AudioManager.Instance.SetSnapshot("Menu");
         }
 
         private void HandleCursor(bool active)

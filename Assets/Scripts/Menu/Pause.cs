@@ -12,7 +12,7 @@ namespace ShhhSilence.Menu.Behaviours
         [SerializeField]
         private List<MonoBehaviour> deactivateWhenPaused;
 
-        private void Awake() {
+        private void OnEnable() {
             deactivateWhenPaused = new List<MonoBehaviour>();
             deactivateWhenPaused?.Add(FindObjectOfType<PlayerBodyController>());
             deactivateWhenPaused?.Add(FindObjectOfType<PlayerGrabberController>());
@@ -29,15 +29,6 @@ namespace ShhhSilence.Menu.Behaviours
 
         public void Switch(bool isTrue)
         {
-            if (isTrue)
-            {
-                Time.timeScale = 0;
-            }
-            else
-            {
-                Time.timeScale = 1;
-            }
-
             foreach (MonoBehaviour behaviour in deactivateWhenPaused)
             {
                 behaviour.enabled = !isTrue;

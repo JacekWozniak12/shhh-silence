@@ -11,12 +11,12 @@ namespace ShhhSilence.Base.Managers
         public AudioAmbience DefaultAmbience;
 
         [SerializeField]
-        private List<AudioMixer> audioMixers;
+        private AudioMixer audioMixer;
 
-        public List<AudioMixer> AudioMixers
+        public AudioMixer AudioMixers
         {
-            get { return audioMixers; }
-            set { audioMixers = value; }
+            get { return audioMixer; }
+            private set { audioMixer = value; }
         }
 
         [SerializeField]
@@ -55,27 +55,34 @@ namespace ShhhSilence.Base.Managers
             MuteMixers(isTrue);
         }
 
+        public void SetSnapshot(string snapshotName)
+        {
+            var snapshot = audioMixer.FindSnapshot(snapshotName);
+            Debug.Log(snapshot);
+            audioMixer.TransitionToSnapshots(
+               new AudioMixerSnapshot[] { snapshot }, new float[] { 1f }, 0
+            );
+        }
+
         public void MuteToggle()
         {
             muted = !muted;
             MuteRequest(muted);
         }
 
+        private float tempMasterVolume = 0;
+
         private void MuteMixers(bool isTrue)
         {
             if (isTrue)
             {
-                foreach (AudioMixer mixer in audioMixers)
-                {
-                    mixer.SetFloat("MasterVolume", -80);
-                }
+                audioMixer.GetFloat("MasterVolume", out float temp);
+                if(temp != -80) tempMasterVolume = temp;
+                audioMixer.SetFloat("MasterVolume", -80);
             }
             else
             {
-                foreach (AudioMixer mixer in audioMixers)
-                {
-                    mixer.SetFloat("MasterVolume", 0);
-                }
+                audioMixer.SetFloat("MasterVolume", tempMasterVolume);
             }
         }
     }

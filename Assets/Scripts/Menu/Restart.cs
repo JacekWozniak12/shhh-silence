@@ -6,7 +6,7 @@ namespace ShhhSilence.Menu.Behaviours
     public class Restart : MonoBehaviour
     {
         string scene;
-        
+
         [SerializeField]
         KeyCode keyCode = KeyCode.F7;
 
@@ -17,7 +17,12 @@ namespace ShhhSilence.Menu.Behaviours
 
         private void Update()
         {
-            if (Input.GetKeyDown(keyCode)) SceneManager.LoadScene(scene);
+            if (Input.GetKeyDown(keyCode)) ReloadScene();
+        }
+
+        public void ReloadScene()
+        {
+            SceneManager.LoadScene(scene);
         }
     }
 }
