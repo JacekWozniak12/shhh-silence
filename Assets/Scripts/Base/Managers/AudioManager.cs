@@ -20,34 +20,45 @@ namespace ShhhSilence.Base.Managers
         }
 
         [SerializeField]
-        private bool mute = true;
+        private bool muted = true;
 
-        public bool Mute
+        public bool Muted
         {
-            get => mute;
+            get => muted;
             set
             {
-                mute = value;
-                MuteMixers(mute);
+                muted = value;
+                MuteMixers(muted);
             }
         }
 
         private void OnValidate()
         {
-            MuteMixers(mute);
+            MuteMixers(muted);
         }
 
         private void Start()
         {
-            MuteMixers(mute);
+            MuteMixers(muted);
         }
 
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.M))
             {
-                mute = !mute;
+                muted = !muted;
             }
+        }
+
+        public void MuteRequest(bool isTrue)
+        {
+            MuteMixers(isTrue);
+        }
+
+        public void MuteToggle()
+        {
+            muted = !muted;
+            MuteRequest(muted);
         }
 
         private void MuteMixers(bool isTrue)

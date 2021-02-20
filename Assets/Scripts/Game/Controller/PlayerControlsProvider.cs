@@ -15,6 +15,9 @@ namespace ShhhSilence.Game.Controller
         public string Pick = "Pick";
         public string Use = "Use";
 
+        [Header("Menu provider")]
+        public string MainMenuButton = "MainMenu";
+
         #endregion
 
         #region Mouse
@@ -27,6 +30,16 @@ namespace ShhhSilence.Game.Controller
 
         public string MouseAxisX = "Mouse X";
         public string MouseAxisY = "Mouse Y";
+
+        public void SetCursorLockState(CursorLockMode mode)
+        {
+            Cursor.lockState = mode;
+        }
+
+        public void ShowCursor(bool isTrue = true)
+        {
+            Cursor.visible = isTrue;
+        }
 
         #endregion
     }

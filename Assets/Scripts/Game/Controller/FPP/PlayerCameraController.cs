@@ -36,8 +36,8 @@ namespace ShhhSilence.Game.Controller.FPP
 
         private void Awake()
         {
-            ShowCursor(false);
-            LockCursor();
+            controlsProvider.ShowCursor(false);
+            controlsProvider.SetCursorLockState(CursorLockMode.Locked);
             GetInformations();
         }
 
@@ -109,19 +109,5 @@ namespace ShhhSilence.Game.Controller.FPP
 
             bodyTransform.rotation = Quaternion.Euler(currentBodyRotation);
         }
-
-        private void LockCursor()
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-
-        private void ShowCursor(bool state = true)
-        {
-            if (state)
-                Cursor.visible = false;
-            else
-                Cursor.visible = true;
-        }
-
     }
 }
