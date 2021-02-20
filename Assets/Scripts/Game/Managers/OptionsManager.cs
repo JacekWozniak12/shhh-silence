@@ -37,7 +37,7 @@ namespace ShhhSilence.Game.Managers
 
         private void InitializePauseOnActive()
         {
-            pause = this.gameObject.AddComponent<Pause>();
+            pause = GetComponent<Pause>();
             pause.Switch(active);
         }
 
