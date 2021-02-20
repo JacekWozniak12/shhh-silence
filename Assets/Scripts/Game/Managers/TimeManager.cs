@@ -1,18 +1,29 @@
+using System;
 using ShhhSilence.Base.Managers;
 using UnityEngine;
+using System.Numerics;
 
 namespace ShhhSilence.Game.Managers
 {
     public class TimeManager : BaseManager<TimeManager>
     {
         [SerializeField]
-        private float timeFromNewGame;
+        [Tooltip("in seconds")]
+        private float timeFromStartGame;
+
+        /// <summary>
+        /// in seconds
+        /// </summary>
         public float TimeFromStartGame
         {
-            get => timeFromNewGame;
-            private set => timeFromNewGame = value;
+            get => timeFromStartGame;
+            private set => timeFromStartGame = value;
         }
 
-        
+        private void FixedUpdate()
+        {
+            timeFromStartGame += Time.fixedDeltaTime;
+        }
+
     }
 }

@@ -1,5 +1,8 @@
+using System;
+using System.Reflection;
 using ShhhSilence.Base.Interfaces;
 using ShhhSilence.Library.HelperL;
+using UnityEditor;
 using UnityEngine;
 
 namespace ShhhSilence.Base.Data
@@ -16,9 +19,9 @@ namespace ShhhSilence.Base.Data
             out float volume,
             out float pitch)
         {
-            clip = clips[Random.Range(0, clips.Length)];
-            volume = Random.Range(this.volume.min, this.volume.max);
-            pitch = Random.Range(this.pitch.min, this.pitch.max);
+            clip = clips[UnityEngine.Random.Range(0, clips.Length)];
+            volume = UnityEngine.Random.Range(this.volume.min, this.volume.max);
+            pitch = UnityEngine.Random.Range(this.pitch.min, this.pitch.max);
         }
 
         public void GetSound(

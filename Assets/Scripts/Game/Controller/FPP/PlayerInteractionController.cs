@@ -25,7 +25,6 @@ namespace ShhhSilence.Game.Controller.FPP
 
         private Interactable lastInteractable;
 
-
         private void Update()
         {
             InteractInput();

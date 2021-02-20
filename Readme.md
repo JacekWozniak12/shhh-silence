@@ -60,6 +60,8 @@ Plays AudioData of default ground or sound specified in custom component when sp
 ## Using
 ### Utilities
 - DOTween
+- LeanGUI
+- Mesh Combiner
 - Quick Outline
 
 ### 3D models 

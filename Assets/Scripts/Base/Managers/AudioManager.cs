@@ -9,7 +9,7 @@ namespace ShhhSilence.Base.Managers
     {
         public AudioAmbience CurrentAmbience;
         public AudioAmbience DefaultAmbience;
-        
+
         [SerializeField]
         private List<AudioMixer> audioMixers;
 
@@ -21,9 +21,25 @@ namespace ShhhSilence.Base.Managers
 
         [SerializeField]
         private bool mute = true;
+
+        public bool Mute
+        {
+            get => mute;
+            set
+            {
+                mute = value;
+                MuteMixers(mute);
+            }
+        }
+
+        private void OnValidate()
+        {
+            MuteMixers(mute);
+        }
+
         private void Start()
         {
-            if (mute) MuteMixers();
+            MuteMixers(mute);
         }
 
         private void Update()
@@ -31,30 +47,24 @@ namespace ShhhSilence.Base.Managers
             if (Input.GetKeyDown(KeyCode.M))
             {
                 mute = !mute;
-                if (mute)
-                {
-                    MuteMixers();
-                }
-                else
-                {
-                    UnmuteMixers();
-                }
             }
         }
 
-        private void UnmuteMixers()
+        private void MuteMixers(bool isTrue)
         {
-            foreach (AudioMixer mixer in audioMixers)
+            if (isTrue)
             {
-                mixer.SetFloat("MasterVolume", 0);
+                foreach (AudioMixer mixer in audioMixers)
+                {
+                    mixer.SetFloat("MasterVolume", -80);
+                }
             }
-        }
-
-        private void MuteMixers()
-        {
-            foreach (AudioMixer mixer in audioMixers)
+            else
             {
-                mixer.SetFloat("MasterVolume", -80);
+                foreach (AudioMixer mixer in audioMixers)
+                {
+                    mixer.SetFloat("MasterVolume", 0);
+                }
             }
         }
     }

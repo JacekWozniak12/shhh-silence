@@ -6,9 +6,13 @@ namespace ShhhSilence.Game.Managers
 {
     public class GameManager : BaseManager<GameManager>
     {
-        public UnityEvent SoundExceedTreshold;
+        public UnityEvent corruptionExceedThreshold;
 
-        public int SoundTreshold;
+        [SerializeField]
+        private float corruptionThreshold = 100f;
+
+        [SerializeField]
+        private float changePerSecond  = 0.5f;
 
         
     }
