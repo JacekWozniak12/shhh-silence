@@ -55,9 +55,21 @@ It can be forced to have one selected ambience, which is useful in case of objec
 It creates AudioSource per AudioAmbienceItem with RequireComponent, so it is one AudioSource per item. I prefered having multiple AudioSource to handle multiple interactions as Opening, Picking Up, Closing or Turning On / Off. 
 
 ##### Snapshots
+![Snapshots](Docs/Snapshots.PNG)
 AudioMixerSnapshots were created for audio managment, to determine where player is, and how many obstacles are for the audio (currently are only doors). Its not the best solution as it isn't scalable, but it can be reworked and reused with additional turning off / on AudioSource within area (so for example two houses can use same snapshots, but it requires more fiddling with level design).
 
-Setting snapshots in audio mixer is handled by ***AudioManager*** and ***SnapshotModifierSetter***
+Setting snapshots in audio mixer is handled by ***AudioManager*** and ***SnapshotModifierSetter***.
+
+###### Door
+Describes states when doors are closed or open.
+
+###### Player
+Describes where player is.
+
+##### Known issues
+- Audio sources sometimes plays instantly and doesn't consider breaking animation (you can see that by closing and quickly opening the door). 
+- Ambience sometimes isn't properly added into the player / moving objects due to framerate / timing issues.
+- Snapshot system is not scalable at this moment
 
 #### Player
 ##### FootstepController
