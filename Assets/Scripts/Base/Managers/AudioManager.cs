@@ -56,32 +56,34 @@ namespace ShhhSilence.Base.Managers
             MuteMixers(isTrue);
         }
 
-        public void AddSnapshot(string snapshotName)
+        public AudioMixerSnapshot AddSnapshot(string snapshotName)
         {
             var snapshot = audioMixer.FindSnapshot(snapshotName);
-            AddSnapshot(snapshot);
+            return AddSnapshot(snapshot);
         }
 
-        public void AddSnapshot(AudioMixerSnapshot snapshot)
+        public AudioMixerSnapshot AddSnapshot(AudioMixerSnapshot snapshot)
         {
-            if (snapshot == null) return;
+            if (snapshot == null) return null;
             Debug.Log("SNAPSHOT ADDED:" + snapshot);
             snapshots.Add(snapshot);
             UpdateMixer();
+            return snapshot;
         }
 
-        public void DeleteSnapshot(string snapshotName)
+        public AudioMixerSnapshot DeleteSnapshot(string snapshotName)
         {
             var snapshot = audioMixer.FindSnapshot(snapshotName);
-            DeleteSnapshot(snapshot);
+            return DeleteSnapshot(snapshot);
         }
 
-        public void DeleteSnapshot(AudioMixerSnapshot snapshot)
+        public AudioMixerSnapshot DeleteSnapshot(AudioMixerSnapshot snapshot)
         {
-            if (snapshot == null) return;
+            if (snapshot == null) return null;
             Debug.Log("SNAPSHOT DELETE:" + snapshot);
             snapshots?.Remove(snapshot);
             UpdateMixer();
+            return snapshot;
         }
 
         private void UpdateMixer()

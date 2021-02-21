@@ -12,6 +12,8 @@ namespace ShhhSilence.Base.Behaviours
         [SerializeField] 
         AudioMixerSnapshot snapshotOff;
 
+        AudioMixerSnapshot tempDeletedSnapshot;
+
         [SerializeField]
         bool state = true;
 
@@ -39,13 +41,13 @@ namespace ShhhSilence.Base.Behaviours
 
         public void StateOff()
         {
-            AddSnapshot(snapshotOn);
-            DeleteSnapshot(snapshotOff);
+            AddSnapshot(snapshotOff);
+            DeleteSnapshot(snapshotOn);
         }
 
         private void Start() => SetActive(state);
-        public void AddSnapshot(AudioMixerSnapshot snapshot) => AudioManager.Instance.AddSnapshot(snapshot);
-        public void DeleteSnapshot(AudioMixerSnapshot snapshot) => AudioManager.Instance.DeleteSnapshot(snapshot);
+        public AudioMixerSnapshot AddSnapshot(AudioMixerSnapshot snapshot) => AudioManager.Instance.AddSnapshot(snapshot);
+        public AudioMixerSnapshot DeleteSnapshot(AudioMixerSnapshot snapshot) => AudioManager.Instance.DeleteSnapshot(snapshot);
     }
 }
 
