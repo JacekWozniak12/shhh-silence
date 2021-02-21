@@ -1,7 +1,8 @@
 # Shhh - Silence!
-
-
 Simple gameplay, where you have to live quietly with your neighbor but items in your home will make it hard. 
+
+## Current Version
+Working walkable space without gameplay
 
 ## Gameplay 
 Don't be loud. Your neighbor is sleeping and you don't want to wake him up. So silence everything you need. Try to silence as many loud corruption noises as possibly, but longer you try to stay silent, the often they come.
@@ -52,6 +53,9 @@ Currently to register change of enviroment on item I use OnTriggerEnter / Exit /
 It can be forced to have one selected ambience, which is useful in case of objects that are within two ambient groups and are not pickable, like for example doors. Those have AudioReverb zones as well. 
 
 It creates AudioSource per AudioAmbienceItem with RequireComponent, so it is one AudioSource per item. I prefered having multiple AudioSource to handle multiple interactions as Opening, Picking Up, Closing or Turning On / Off. 
+
+##### Snapshots
+AudioMixerSnapshots were created for audio managment, to determine where player is, and how many obstacles are for the audio (currently are only doors). Its not the best solution as it isn't scalable, but it can be reworked and reused with additional turning off / on AudioSource within area (so for example two houses can use same snapshots, but it requires more fiddling with level design).
 
 #### Player
 ##### FootstepController
