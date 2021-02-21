@@ -57,8 +57,8 @@ namespace ShhhSilence.Game.Managers
 
         private void HandleSnapshot(bool active)
         {
-            if (!active) AudioManager.Instance.SetSnapshot("Game");
-            else AudioManager.Instance.SetSnapshot("Menu");
+            if (!active) AudioManager.Instance.AddSnapshot("GAME");
+            else AudioManager.Instance.AddSnapshot("MENU");
         }
 
         private void HandleCursor(bool active)

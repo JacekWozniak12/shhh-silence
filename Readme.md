@@ -57,6 +57,8 @@ It creates AudioSource per AudioAmbienceItem with RequireComponent, so it is one
 ##### Snapshots
 AudioMixerSnapshots were created for audio managment, to determine where player is, and how many obstacles are for the audio (currently are only doors). Its not the best solution as it isn't scalable, but it can be reworked and reused with additional turning off / on AudioSource within area (so for example two houses can use same snapshots, but it requires more fiddling with level design).
 
+Setting snapshots in audio mixer is handled by ***AudioManager*** and ***SnapshotModifierSetter***
+
 #### Player
 ##### FootstepController
 Plays AudioData of default ground or sound specified in custom component when specified period of time elapsed and Player is moving and grounded. 

@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace ShhhSilence.Base.Managers
+namespace ShhhSilence.Base.Behaviours
 {
     /// <summary>
     /// Defines object with Dont Destroy On Load.

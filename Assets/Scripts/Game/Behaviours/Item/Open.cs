@@ -55,23 +55,23 @@ namespace ShhhSilence.Game.Behaviours
 
         private void CreateOpenClose()
         {
-            state.Queue.Add(new UnityEvent<GameObject>());
+            if (state.Queue.Count < 1) state.Queue.Add(new UnityEvent<GameObject>());
             state.Queue[0].AddListener(Activate);
 
-            state.Queue.Add(new UnityEvent<GameObject>());
+            if (state.Queue.Count < 2) state.Queue.Add(new UnityEvent<GameObject>());
             state.Queue[1].AddListener(DeActivate);
         }
 
         private void Activate(GameObject agent)
         {
             transform.DORotate(direction, timeToFull, rotateMode);
-            if(activated != null) item?.Play(activated);
+            if (activated != null) item?.Play(activated);
         }
 
         private void DeActivate(GameObject agent)
         {
             transform.DORotate(closeRotation, timeToFull, rotateMode);
-            if(deactivated != null) item?.Play(deactivated);
+            if (deactivated != null) item?.Play(deactivated);
         }
     }
 }

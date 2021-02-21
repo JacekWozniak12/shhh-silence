@@ -9,6 +9,7 @@ namespace ShhhSilence.Base.Managers
     {
         public AudioAmbience CurrentAmbience;
         public AudioAmbience DefaultAmbience;
+        List<AudioMixerSnapshot> snapshots = new List<AudioMixerSnapshot>();
 
         [SerializeField]
         private AudioMixer audioMixer;
@@ -55,12 +56,45 @@ namespace ShhhSilence.Base.Managers
             MuteMixers(isTrue);
         }
 
-        public void SetSnapshot(string snapshotName)
+        public void AddSnapshot(string snapshotName)
         {
             var snapshot = audioMixer.FindSnapshot(snapshotName);
-            Debug.Log(snapshot);
+            AddSnapshot(snapshot);
+        }
+
+        public void AddSnapshot(AudioMixerSnapshot snapshot)
+        {
+            if (snapshot == null) return;
+            Debug.Log("SNAPSHOT ADDED:" + snapshot);
+            snapshots.Add(snapshot);
+            UpdateMixer();
+        }
+
+        public void DeleteSnapshot(string snapshotName)
+        {
+            var snapshot = audioMixer.FindSnapshot(snapshotName);
+            DeleteSnapshot(snapshot);
+        }
+
+        public void DeleteSnapshot(AudioMixerSnapshot snapshot)
+        {
+            if (snapshot == null) return;
+            Debug.Log("SNAPSHOT DELETE:" + snapshot);
+            snapshots?.Remove(snapshot);
+            UpdateMixer();
+        }
+
+        private void UpdateMixer()
+        {
+            float[] weights = new float[snapshots.Count];
+
+            for (int i = 0; i < weights.Length; i++)
+            {
+                weights[i] = (float)1 / (float)weights.Length;
+            }
+
             audioMixer.TransitionToSnapshots(
-               new AudioMixerSnapshot[] { snapshot }, new float[] { 1f }, 0
+               snapshots.ToArray(), weights, 0
             );
         }
 
@@ -77,7 +111,7 @@ namespace ShhhSilence.Base.Managers
             if (isTrue)
             {
                 audioMixer.GetFloat("MasterVolume", out float temp);
-                if(temp != -80) tempMasterVolume = temp;
+                if (temp != -80) tempMasterVolume = temp;
                 audioMixer.SetFloat("MasterVolume", -80);
             }
             else
