@@ -1,7 +1,8 @@
 using System;
 using ShhhSilence.Base.Managers;
 using UnityEngine;
-using System.Numerics;
+using System.Collections.Generic;
+using ShhhSilence.Game.Behaviours.Events;
 
 namespace ShhhSilence.Game.Managers
 {
@@ -10,6 +11,9 @@ namespace ShhhSilence.Game.Managers
         [SerializeField]
         [Tooltip("in seconds")]
         private float timeFromStartGame;
+
+        [SerializeField]
+        public List<EventOnTime> Events;
 
         /// <summary>
         /// in seconds

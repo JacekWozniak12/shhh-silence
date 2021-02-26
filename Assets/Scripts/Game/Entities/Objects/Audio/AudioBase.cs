@@ -26,7 +26,7 @@ namespace ShhhSilence.Game.Entities
 
         protected virtual void GetAudioSource()
         {
-            audioSource = audioSource ?? GetComponent<AudioSource>() ?? gameObject.AddComponent<AudioSource>();
+            audioSource = audioSource ?? GetComponent<AudioSource>();
         }
 
         protected virtual void CustomStart() { }

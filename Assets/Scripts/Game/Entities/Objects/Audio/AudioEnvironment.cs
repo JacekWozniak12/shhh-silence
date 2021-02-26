@@ -7,7 +7,7 @@ using UnityEngine;
 namespace ShhhSilence.Game.Entities
 {
     [RequireComponent(typeof(BoxCollider))]
-    public class AudioEnviroment : MonoBehaviour
+    public class AudioEnvironment : MonoBehaviour
     {
         private new Collider collider;
         [SerializeField] AudioAmbience Ambience;

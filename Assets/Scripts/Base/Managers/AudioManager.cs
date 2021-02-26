@@ -33,27 +33,16 @@ namespace ShhhSilence.Base.Managers
             }
         }
 
-        private void OnValidate()
-        {
-            MuteMixers(muted);
-        }
-
-        private void Start()
-        {
-            MuteMixers(muted);
-        }
-
+        private void OnValidate() => MuteMixers(muted);
+        private void Start() => MuteMixers(muted);
+        public void MuteRequest(bool isTrue) => MuteMixers(isTrue);
+        
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.M))
             {
                 muted = !muted;
             }
-        }
-
-        public void MuteRequest(bool isTrue)
-        {
-            MuteMixers(isTrue);
         }
 
         public AudioMixerSnapshot AddSnapshot(string snapshotName)

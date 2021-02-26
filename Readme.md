@@ -14,6 +14,7 @@ Don't be loud. Your neighbor is sleeping and you don't want to wake him up. So s
 - `E` interact
 - `LMB` throw
 - `RMB` drop
+- `P` puase
 
 ## Implementation
 ### Controller
